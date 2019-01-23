@@ -2,23 +2,22 @@
 <body>
 
 <h2>Ky thuat AJAX</h2>
-
-<button type="button" onclick="loadDoc()">Tao Request toi Server</button>
-
-<p id="demo"></p>
-
+<p2 id='output'>Output ne`!</p>
 
 <script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-      document.getElementById("demo").innerHTML = xhttp.responseText;
-    }
-  };
-  //xhttp.open("GET", "hello.txt", true);
-  //xhttp.send();
-}
+	var url = 'http://ajax-json.cione.vn/api/v1/products';
+	var xhr = new XMLHttpRequest();
+	var output = document.getElementById('output');
+	xhr.onreadystatechange = handleResult;
+	xhr.open('GET', url);
+	xhr.send();
+	
+	function handleResult() {
+		if (xhr.readyState === 4)
+		{
+			output.innerHTML = xhr.responseText;
+		}
+	}
 </script>
 
 </body>
