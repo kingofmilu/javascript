@@ -2,12 +2,14 @@
 <body>
 
 <h2>Ky thuat AJAX</h2>
-<p2 id='output'>Output ne`!</p>
+<p id='output'>Output ne`!</p>
+<p id='product'>Product ne`!</p>
 
 <script>
 	var url = 'http://ajax-json.cione.vn/api/v1/products';
 	var xhr = new XMLHttpRequest();
 	var output = document.getElementById('output');
+	var product = document.getElementById('product');
 	xhr.onreadystatechange = handleResult;
 	xhr.open('GET', url);
 	xhr.send();
@@ -16,6 +18,9 @@
 		if (xhr.readyState === 4)
 		{
 			output.innerHTML = xhr.responseText;
+			var text = '{ "products" : ' + xhr.responseText + '}';
+			var product1 = JSON.parse(text);
+			product.innerHTML = product1.products[0].Name;
 		}
 	}
 </script>
